@@ -58,6 +58,7 @@ void EthernetUDP::stop()
 	}
 }
 
+#ifndef ETHERNET_DISABLE_DNS_QUERIES
 int EthernetUDP::beginPacket(const char *host, uint16_t port)
 {
 	// Look up the host first
@@ -70,6 +71,7 @@ int EthernetUDP::beginPacket(const char *host, uint16_t port)
 	if (ret != 1) return ret;
 	return beginPacket(remote_addr, port);
 }
+#endif // ETHERNET_DISABLE_DNS_QUERIES
 
 int EthernetUDP::beginPacket(IPAddress ip, uint16_t port)
 {

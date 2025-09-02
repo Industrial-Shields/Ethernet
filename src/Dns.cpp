@@ -7,6 +7,9 @@
 #include "Dns.h"
 #include "utility/w5100.h"
 
+#ifndef ETHERNET_DISABLE_DNS_QUERIES
+
+
 
 #define SOCKET_NONE              255
 // Various flags and header field values for a DNS message
@@ -351,3 +354,7 @@ uint16_t DNSClient::ProcessResponse(uint16_t aTimeout, IPAddress& aAddress)
 	// If we get here then we haven't found an answer
 	return -10; //INVALID_RESPONSE;
 }
+
+
+
+#endif // ETHERNET_DISABLE_DNS_QUERIES

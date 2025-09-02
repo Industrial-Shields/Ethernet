@@ -47,6 +47,9 @@
 // does not always seem to work in practice (maybe WIZnet bugs?)
 //#define ETHERNET_LARGE_BUFFERS
 
+// Add the possibility to disable DNS searching if not needed
+// #define ETHERNET_DISABLE_DNS_QUERIES
+
 
 #include <Arduino.h>
 #include "Client.h"
@@ -189,7 +192,11 @@ public:
 	virtual int beginPacket(IPAddress ip, uint16_t port);
 	// Start building up a packet to send to the remote host specific in host and port
 	// Returns 1 if successful, 0 if there was a problem resolving the hostname or port
+#ifndef ETHERNET_DISABLE_DNS_QUERIES
 	virtual int beginPacket(const char *host, uint16_t port);
+#else
+	virtual int beginPacket(const char *host, uint16_t port) { return 0; };
+#endif
 	// Finish off this packet and send it
 	// Returns 1 if the packet was sent successfully, 0 if there was an error
 	virtual int endPacket();
@@ -235,7 +242,11 @@ public:
 
 	uint8_t status();
 	virtual int connect(IPAddress ip, uint16_t port);
+#ifndef ETHERNET_DISABLE_DNS_QUERIES
 	virtual int connect(const char *host, uint16_t port);
+#else
+	virtual int connect(const char *host, uint16_t port) { return 0; }
+#endif
 	virtual int availableForWrite(void);
 	virtual size_t write(uint8_t);
 	virtual size_t write(const uint8_t *buf, size_t size);

@@ -23,6 +23,7 @@
 #include "Dns.h"
 #include "utility/w5100.h"
 
+#ifndef ETHERNET_DISABLE_DNS_QUERIES
 int EthernetClient::connect(const char * host, uint16_t port)
 {
 	DNSClient dns; // Look up the host first
@@ -38,6 +39,7 @@ int EthernetClient::connect(const char * host, uint16_t port)
 	if (!dns.getHostByName(host, remote_addr)) return 0; // TODO: use _timeout
 	return connect(remote_addr, port);
 }
+#endif // ETHERNET_DISABLE_DNS_QUERIES
 
 int EthernetClient::connect(IPAddress ip, uint16_t port)
 {

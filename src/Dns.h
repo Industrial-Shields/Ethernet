@@ -2,6 +2,10 @@
 // (c) Copyright 2009-2010 MCQN Ltd.
 // Released under Apache License, version 2.0
 
+#ifndef ETHERNET_DISABLE_DNS_QUERIES
+
+
+
 #ifndef DNSClient_h
 #define DNSClient_h
 
@@ -38,3 +42,7 @@ protected:
 };
 
 #endif
+
+
+
+#endif // ETHERNET_DISABLE_DNS_QUERIES
