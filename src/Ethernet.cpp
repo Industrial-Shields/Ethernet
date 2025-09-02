@@ -225,11 +225,36 @@ void EthernetClass::setRetransmissionCount(uint8_t num)
 }
 
 
+int EthernetClass::setPHYConfig(EthernetPHYConfig cfg) {
+	if (W5100.getChip() != 55) {
+		// Register PHYCFGR it's only for W5500
+		return -1;
+	}
 
+	bool result;
+	SPI.beginTransaction(SPI_ETHERNET_SETTINGS);
+	W5100.setW5500PHYConfig(static_cast<uint8_t>(cfg));
+	SPI.endTransaction();
+	delay(100); // Add some delay to let other PHYs detect that the link is down
+	SPI.beginTransaction(SPI_ETHERNET_SETTINGS);
+	W5100.setW5500PHYConfig(static_cast<uint8_t>(cfg) | (1 << 7));
+	result = W5100.getW5500PHYConfig() == static_cast<uint8_t>(cfg);
+	SPI.endTransaction();
+	return result ? 0 : 1;
+}
 
+EthernetPHYConfig EthernetClass::getPHYConfig(void) {
+	if (W5100.getChip() != 55) {
+		// Register PHYCFGR it's only for W5500
+		return EthernetPHYConfig::PMode;
+	}
 
-
-
+	EthernetPHYConfig phyRead;
+	SPI.beginTransaction(SPI_ETHERNET_SETTINGS);
+	phyRead = static_cast<EthernetPHYConfig>(W5100.getW5500PHYConfig());
+	SPI.endTransaction();
+	return phyRead;
+}
 
 
 

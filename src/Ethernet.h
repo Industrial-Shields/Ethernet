@@ -66,6 +66,18 @@ enum EthernetHardwareStatus {
 	EthernetW5500
 };
 
+enum class EthernetPHYConfig : uint8_t {
+	H10 = 0b01000000,       // 10baseT/Half autoneg off,  OPMDC = 000
+	F10 = 0b01001000,       // 10baseT/Full autoneg off,  OPMDC = 001
+	H100 = 0b01010000,      // 100baseT/Half autoneg off, OPMDC = 010
+	F100 = 0b01011000,      // 100baseT/Full autoneg off, OPMDC = 011
+	H100Auto = 0b01100000,  // 100baseT/Half autoneg on,  OPMDC = 100
+	Off = 0b01110000,       // Power Down mode,           OPMDC = 110
+	All = 0b01111000,       // All capable, autoneg on,   OPMDC = 111
+	PMode = 0b00000000,     // Use PMODE hardware bits instead of OPMDC
+};
+
+
 class EthernetUDP;
 class EthernetClient;
 class EthernetServer;
@@ -104,6 +116,10 @@ public:
 	void setDnsServerIP(const IPAddress dns_server) { _dnsServerAddress = dns_server; }
 	void setRetransmissionTimeout(uint16_t milliseconds);
 	void setRetransmissionCount(uint8_t num);
+
+	//EthernetPHY configuration
+	static int setPHYConfig(EthernetPHYConfig conf);
+	static EthernetPHYConfig getPHYConfig(void);
 
 	friend class EthernetClient;
 	friend class EthernetServer;

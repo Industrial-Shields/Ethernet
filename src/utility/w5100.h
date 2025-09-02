@@ -143,6 +143,9 @@ public:
   inline void setRetransmissionTime(uint16_t timeout) { writeRTR(timeout); }
   inline void setRetransmissionCount(uint8_t retry) { writeRCR(retry); }
 
+  inline void setW5500PHYConfig(uint8_t cfg) { writePHYCFGR_W5500(cfg); }
+  inline uint8_t getW5500PHYConfig(void) { return readPHYCFGR_W5500() & 0b01111000; }
+
   static void execCmdSn(SOCKET s, SockCMD _cmd);
 
 
