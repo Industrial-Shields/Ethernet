@@ -29,12 +29,18 @@
 // was removed to avoid possible conflict with the C library header files.
 
 
+// Force only one socket within the W5XXX chip. It can be useful when you only
+// need one simultaneous connection.
+// #define ETHERNET_FORCE_ONE_SOCKET
+
 // Configure the maximum number of sockets to support.  W5100 chips can have
 // up to 4 sockets.  W5200 & W5500 can have up to 8 sockets.  Several bytes
 // of RAM are used for each socket.  Reducing the maximum can save RAM, but
 // you are limited to fewer simultaneous connections.
 #if defined(RAMEND) && defined(RAMSTART) && ((RAMEND - RAMSTART) <= 2048)
 #define MAX_SOCK_NUM 4
+#elif defined(ETHERNET_FORCE_ONE_SOCKET)
+#define MAX_SOCK_NUM 1
 #else
 #define MAX_SOCK_NUM 8
 #endif
