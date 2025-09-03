@@ -33,6 +33,15 @@ int EthernetClass::begin(uint8_t *mac, unsigned long timeout, unsigned long resp
 
 	// Initialise the basic info
 	if (W5100.init() == 0) return 0;
+
+#if defined(MDUINO_PLUS) || defined(ESP32PLC)
+	// Ignore PMODE inputs
+	int result = setPHYConfig(EthernetPHYConfig::All);
+	if (result != 0) {
+		return result;
+	}
+#endif // defined(MDUINO_PLUS) || defined(ESP32PLC)
+
 	SPI.beginTransaction(SPI_ETHERNET_SETTINGS);
 	W5100.setMACAddress(mac);
 	W5100.setIPAddress(IPAddress(0,0,0,0).raw_address());
@@ -81,6 +90,12 @@ void EthernetClass::begin(uint8_t *mac, IPAddress ip, IPAddress dns, IPAddress g
 void EthernetClass::begin(uint8_t *mac, IPAddress ip, IPAddress dns, IPAddress gateway, IPAddress subnet)
 {
 	if (W5100.init() == 0) return;
+
+#if defined(MDUINO_PLUS) || defined(ESP32PLC)
+	// Ignore PMODE inputs
+	setPHYConfig(EthernetPHYConfig::All);
+#endif // defined(MDUINO_PLUS) || defined(ESP32PLC)
+
 	SPI.beginTransaction(SPI_ETHERNET_SETTINGS);
 	W5100.setMACAddress(mac);
 	W5100.setIPAddress(ip.raw_address());
