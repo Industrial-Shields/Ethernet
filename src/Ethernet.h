@@ -292,7 +292,7 @@ public:
 	EthernetClient available();
 	EthernetClient accept();
 	virtual void begin();
-#ifdef ESP32
+#if ESP_ARDUINO_VERSION < ESP_ARDUINO_VERSION_VAL(3, 0, 0)
 	virtual void begin(uint16_t port) {
 		_port = port;
 		begin();
