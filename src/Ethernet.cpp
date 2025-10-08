@@ -23,6 +23,11 @@
 #include "utility/w5100.h"
 #include "Dhcp.h"
 
+#if ESP_ARDUINO_VERSION >= ESP_ARDUINO_VERSION_VAL(3, 0, 0)
+// Add the warning in this file to only emit one warning
+#warning "This library is deprecated in ESP32. Use the Ethernet library (ETH.h)!"
+#endif
+
 IPAddress EthernetClass::_dnsServerAddress;
 DhcpClass* EthernetClass::_dhcp = NULL;
 
