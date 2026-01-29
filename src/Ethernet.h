@@ -296,12 +296,14 @@ public:
 	EthernetClient available();
 	EthernetClient accept();
 	virtual void begin();
+#if ESP32
 #if ESP_ARDUINO_VERSION < ESP_ARDUINO_VERSION_VAL(3, 0, 0)
 	virtual void begin(uint16_t port) {
 		_port = port;
 		begin();
 	}
-#endif
+#endif // ESP_ARDUINO_VERSION < ESP_ARDUINO_VERSION_VAL(3, 0, 0)
+#endif // ESP32
 	virtual size_t write(uint8_t);
 	virtual size_t write(const uint8_t *buf, size_t size);
 	virtual operator bool();
