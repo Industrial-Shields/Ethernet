@@ -56,6 +56,10 @@
 // Add the possibility to disable DNS searching if not needed
 // #define ETHERNET_DISABLE_DNS_QUERIES
 
+#ifndef ETHERNET_SS_PIN
+#define ETHERNET_SS_PIN 10
+#endif
+
 
 #include <Arduino.h>
 #include "Client.h"
@@ -110,7 +114,7 @@ public:
 	static void begin(uint8_t *mac, IPAddress ip, IPAddress dns);
 	static void begin(uint8_t *mac, IPAddress ip, IPAddress dns, IPAddress gateway);
 	static void begin(uint8_t *mac, IPAddress ip, IPAddress dns, IPAddress gateway, IPAddress subnet);
-	static void init(uint8_t sspin = 10);
+	static void init(uint8_t sspin = ETHERNET_SS_PIN);
 
 	static void MACAddress(uint8_t *mac_address);
 	static IPAddress localIP();
