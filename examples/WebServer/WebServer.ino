@@ -2,11 +2,6 @@
  Web Server
 
  A simple web server that shows the value of the analog input pins.
- using an Arduino WIZnet Ethernet shield.
-
- Circuit:
- * Ethernet shield attached to pins 10, 11, 12, 13
- * Analog inputs attached to pins A0 through A5 (optional)
 
  created 18 Dec 2009
  by David A. Mellis
@@ -20,12 +15,20 @@
 #include <SPI.h>
 #include <Ethernet.h>
 
+#if defined(PIN_I0_12)
+uint8_t analogInputs[] = { I0_7, I0_8, I0_9, I0_10, I0_11, I0_12 };
+const char* analogInputsNames[] = { "I0.7", "I0.8", "I0.9", "I0.10", "I0.11", "I0.12" };
+#else
+uint8_t analogInputs[] = { I0_2, I0_3, I0_4, I0_5 };
+const char* analogInputsNames[] = { "I0.2", "I0.3", "I0.4", "I0.5" };
+#endif  // defined(PIN_I0_12)
+
 // Enter a MAC address and IP address for your controller below.
 // The IP address will be dependent on your local network:
 byte mac[] = {
   0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
 };
-IPAddress ip(192, 168, 1, 177);
+IPAddress ip(10, 10, 10, 4);
 
 // Initialize the Ethernet server library
 // with the IP address and port you want to use
@@ -33,16 +36,8 @@ IPAddress ip(192, 168, 1, 177);
 EthernetServer server(80);
 
 void setup() {
-  // You can use Ethernet.init(pin) to configure the CS pin
-  //Ethernet.init(10);  // Most Arduino shields
-  //Ethernet.init(5);   // MKR ETH Shield
-  //Ethernet.init(0);   // Teensy 2.0
-  //Ethernet.init(20);  // Teensy++ 2.0
-  //Ethernet.init(15);  // ESP8266 with Adafruit FeatherWing Ethernet
-  //Ethernet.init(33);  // ESP32 with Adafruit FeatherWing Ethernet
-
   // Open serial communications and wait for port to open:
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
@@ -93,10 +88,10 @@ void loop() {
           client.println("<!DOCTYPE HTML>");
           client.println("<html>");
           // output the value of each analog input pin
-          for (int analogChannel = 0; analogChannel < 6; analogChannel++) {
-            int sensorReading = analogRead(analogChannel);
+          for (size_t c = 0; c < sizeof(analogInputs); c++) {
+            int sensorReading = analogRead(analogInputs[c]);
             client.print("analog input ");
-            client.print(analogChannel);
+            client.print(analogInputsNames[c]);
             client.print(" is ");
             client.print(sensorReading);
             client.println("<br />");

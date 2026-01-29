@@ -1,16 +1,10 @@
 /*
  Repeating Web client
 
- This sketch connects to a web server and makes a request
- using a WIZnet Ethernet shield. You can use the Arduino Ethernet Shield, or
- the Adafruit Ethernet shield, either one will work, as long as it's got
- a WIZnet Ethernet module on board.
+ This sketch connects to a web server and makes a request.
 
  This example uses DNS, by assigning the Ethernet client with a MAC address,
  IP address, and DNS address.
-
- Circuit:
- * Ethernet shield attached to pins 10, 11, 12, 13
 
  created 19 Apr 2012
  by Tom Igoe
@@ -31,8 +25,8 @@ byte mac[] = {
   0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
 };
 // Set the static IP address to use if the DHCP fails to assign
-IPAddress ip(192, 168, 0, 177);
-IPAddress myDns(192, 168, 0, 1);
+IPAddress ip(10, 10, 10, 4);
+IPAddress myDns(10, 10, 10, 1);
 
 // initialize the library instance:
 EthernetClient client;
@@ -44,16 +38,8 @@ unsigned long lastConnectionTime = 0;           // last time you connected to th
 const unsigned long postingInterval = 10*1000;  // delay between updates, in milliseconds
 
 void setup() {
-  // You can use Ethernet.init(pin) to configure the CS pin
-  //Ethernet.init(10);  // Most Arduino shields
-  //Ethernet.init(5);   // MKR ETH Shield
-  //Ethernet.init(0);   // Teensy 2.0
-  //Ethernet.init(20);  // Teensy++ 2.0
-  //Ethernet.init(15);  // ESP8266 with Adafruit FeatherWing Ethernet
-  //Ethernet.init(33);  // ESP32 with Adafruit FeatherWing Ethernet
-
   // start serial port:
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }

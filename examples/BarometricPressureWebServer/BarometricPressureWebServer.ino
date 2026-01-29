@@ -8,17 +8,6 @@
  This sketch adapted from Nathan Seidle's SCP1000 example for PIC:
  http://www.sparkfun.com/datasheets/Sensors/SCP1000-Testing.zip
 
- TODO: this hardware is long obsolete.  This example program should
- be rewritten to use https://www.sparkfun.com/products/9721
-
- Circuit:
- SCP1000 sensor attached to pins 6,7, and 11 - 13:
- DRDY: pin 6
- CSB: pin 7
- MOSI: pin 11
- MISO: pin 12
- SCK: pin 13
-
  created 31 July 2010
  by Tom Igoe
  */
@@ -34,7 +23,7 @@ byte mac[] = {
   0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
 };
 // assign an IP address for the controller:
-IPAddress ip(192, 168, 1, 20);
+IPAddress ip(10, 10, 10, 4);
 
 
 // Initialize the Ethernet server library
@@ -58,14 +47,6 @@ long pressure = 0;
 long lastReadingTime = 0;
 
 void setup() {
-  // You can use Ethernet.init(pin) to configure the CS pin
-  //Ethernet.init(10);  // Most Arduino shields
-  //Ethernet.init(5);   // MKR ETH Shield
-  //Ethernet.init(0);   // Teensy 2.0
-  //Ethernet.init(20);  // Teensy++ 2.0
-  //Ethernet.init(15);  // ESP8266 with Adafruit FeatherWing Ethernet
-  //Ethernet.init(33);  // ESP32 with Adafruit FeatherWing Ethernet
-
   // start the SPI library:
   SPI.begin();
 
@@ -73,7 +54,7 @@ void setup() {
   Ethernet.begin(mac, ip);
 
   // Open serial communications and wait for port to open:
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
