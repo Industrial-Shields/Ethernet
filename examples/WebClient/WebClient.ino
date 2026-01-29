@@ -2,10 +2,6 @@
  Web client
 
  This sketch connects to a website (http://www.google.com)
- using an Arduino WIZnet Ethernet shield.
-
- Circuit:
- * Ethernet shield attached to pins 10, 11, 12, 13
 
  created 18 Dec 2009
  by David A. Mellis
@@ -27,8 +23,8 @@ byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
 char server[] = "www.google.com";    // name address for Google (using DNS)
 
 // Set the static IP address to use if the DHCP fails to assign
-IPAddress ip(192, 168, 0, 177);
-IPAddress myDns(192, 168, 0, 1);
+IPAddress ip(10, 10, 10, 4);
+IPAddress myDns(10, 10, 10, 1);
 
 // Initialize the Ethernet client library
 // with the IP address and port of the server
@@ -41,16 +37,8 @@ unsigned long byteCount = 0;
 bool printWebData = true;  // set to false for better speed measurement
 
 void setup() {
-  // You can use Ethernet.init(pin) to configure the CS pin
-  //Ethernet.init(10);  // Most Arduino shields
-  //Ethernet.init(5);   // MKR ETH Shield
-  //Ethernet.init(0);   // Teensy 2.0
-  //Ethernet.init(20);  // Teensy++ 2.0
-  //Ethernet.init(15);  // ESP8266 with Adafruit FeatherWing Ethernet
-  //Ethernet.init(33);  // ESP32 with Adafruit FeatherWing Ethernet
-
   // Open serial communications and wait for port to open:
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }

@@ -16,13 +16,12 @@
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
 
 // Set the static IP address to use if the DHCP fails to assign
-IPAddress ip(192, 168, 0, 177);
+IPAddress ip(10, 10, 10, 4);
 
 EthernetServer server(2323);
 
 void setup() {
-
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial);
 
   // start the Ethernet connection:

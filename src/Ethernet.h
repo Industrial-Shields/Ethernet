@@ -56,6 +56,10 @@
 // Add the possibility to disable DNS searching if not needed
 // #define ETHERNET_DISABLE_DNS_QUERIES
 
+#ifndef ETHERNET_SS_PIN
+#define ETHERNET_SS_PIN 10
+#endif
+
 
 #include <Arduino.h>
 #include "Client.h"
@@ -110,7 +114,7 @@ public:
 	static void begin(uint8_t *mac, IPAddress ip, IPAddress dns);
 	static void begin(uint8_t *mac, IPAddress ip, IPAddress dns, IPAddress gateway);
 	static void begin(uint8_t *mac, IPAddress ip, IPAddress dns, IPAddress gateway, IPAddress subnet);
-	static void init(uint8_t sspin = 10);
+	static void init(uint8_t sspin = ETHERNET_SS_PIN);
 
 	static void MACAddress(uint8_t *mac_address);
 	static IPAddress localIP();
@@ -292,12 +296,14 @@ public:
 	EthernetClient available();
 	EthernetClient accept();
 	virtual void begin();
+#if ESP32
 #if ESP_ARDUINO_VERSION < ESP_ARDUINO_VERSION_VAL(3, 0, 0)
 	virtual void begin(uint16_t port) {
 		_port = port;
 		begin();
 	}
-#endif
+#endif // ESP_ARDUINO_VERSION < ESP_ARDUINO_VERSION_VAL(3, 0, 0)
+#endif // ESP32
 	virtual size_t write(uint8_t);
 	virtual size_t write(const uint8_t *buf, size_t size);
 	virtual operator bool();
