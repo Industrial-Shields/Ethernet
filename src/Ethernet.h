@@ -21,6 +21,10 @@
 #ifndef ethernet_h_
 #define ethernet_h_
 
+#ifndef UNUSED
+#define UNUSED(x) (void)(x)
+#endif
+
 // All symbols exposed to Arduino sketches are contained in this header file
 //
 // Older versions had much of this stuff in EthernetClient.h, EthernetServer.h,
