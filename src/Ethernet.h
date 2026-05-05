@@ -205,7 +205,11 @@ public:
 #ifndef ETHERNET_DISABLE_DNS_QUERIES
 	virtual int beginPacket(const char *host, uint16_t port);
 #else
-	virtual int beginPacket(const char *host, uint16_t port) { return 0; };
+	virtual int beginPacket(const char *host, uint16_t port) {
+		UNUSED(host);
+		UNUSED(port);
+		return 0;
+	};
 #endif
 	// Finish off this packet and send it
 	// Returns 1 if the packet was sent successfully, 0 if there was an error
@@ -255,7 +259,11 @@ public:
 #ifndef ETHERNET_DISABLE_DNS_QUERIES
 	virtual int connect(const char *host, uint16_t port);
 #else
-	virtual int connect(const char *host, uint16_t port) { return 0; }
+	virtual int connect(const char *host, uint16_t port) {
+		UNUSED(host);
+		UNUSED(port);
+		return 0;
+	}
 #endif
 	virtual int availableForWrite(void);
 	virtual size_t write(uint8_t);
