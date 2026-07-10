@@ -81,7 +81,7 @@ byte mac[] = {0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED};
 IPAddress ip(10, 0, 0, 177);
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
@@ -125,7 +125,7 @@ byte mac[] = {0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED};
 IPAddress ip(10, 0, 0, 177);
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
@@ -177,7 +177,7 @@ IPAddress ip(10, 0, 0, 177);
 
 void setup() {
   // Open serial communications and wait for port to open:
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
@@ -272,7 +272,7 @@ none
 
 void setup() {
   // Open serial communications and wait for port to open:
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
@@ -329,7 +329,7 @@ EthernetClient client;
 
 void setup() {
   // start the serial library:
-  Serial.begin(9600);
+  Serial.begin(115200);
   // start the Ethernet connection:
   if (Ethernet.begin(mac) == 0) {
     Serial.println("Failed to configure Ethernet using DHCP");
@@ -377,7 +377,7 @@ byte mac[] = {0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED};
 IPAddress ip(10, 0, 0, 177);
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
@@ -734,7 +734,7 @@ byte mac[] = {0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED};
 IPAddress ip(10, 0, 0, 177);
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
@@ -792,7 +792,7 @@ IPAddress subnet(255, 255, 255, 0);
 IPAddress ip(192, 168, 0, 2);
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   // initialize the ethernet device
   Ethernet.begin(mac, ip, dnServer, gateway, subnet);
@@ -974,7 +974,7 @@ void setup() {
   Ethernet.begin(mac, ip);
 
   // Open serial communications and wait for port to open:
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
@@ -1109,7 +1109,7 @@ EthernetServer server = EthernetServer(23);
 
 void setup() {
   // Open serial communications and wait for port to open:
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
@@ -1289,7 +1289,7 @@ EthernetClient client;
 void setup()
 {
   Ethernet.begin(mac, ip);
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   delay(1000);
 
@@ -1356,7 +1356,7 @@ EthernetClient client;
 void setup()
 {
   Ethernet.begin(mac, ip);
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   delay(1000);
 
@@ -1426,7 +1426,7 @@ EthernetClient client;
 void setup()
 {
   Ethernet.begin(mac, ip);
-  Serial.begin(9600);
+  Serial.begin(115200);
   client.connect(server, 80);
   delay(1000);
 
@@ -1498,7 +1498,7 @@ EthernetClient client;
 void setup()
 {
   Ethernet.begin(mac, ip);
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   delay(1000);
 
@@ -1564,7 +1564,7 @@ EthernetServer server = EthernetServer(23);
 
 void setup() {
   // Open serial communications and wait for port to open:
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
@@ -1621,7 +1621,7 @@ EthernetServer server = EthernetServer(23);
 
 void setup() {
   // Open serial communications and wait for port to open:
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
@@ -1678,7 +1678,7 @@ EthernetServer server = EthernetServer(23);
 
 void setup() {
   // Open serial communications and wait for port to open:
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
@@ -1735,7 +1735,7 @@ EthernetServer server = EthernetServer(23);
 
 void setup() {
   // Open serial communications and wait for port to open:
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
@@ -1866,7 +1866,7 @@ EthernetClient client;
 void setup()
 {
   Ethernet.begin(mac, ip);
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   delay(1000);
 
@@ -2341,7 +2341,7 @@ void setup() {
   Ethernet.begin(mac,ip);
   Udp.begin(localPort);
 
-  Serial.begin(9600);
+  Serial.begin(115200);
 }
 
 void loop() {

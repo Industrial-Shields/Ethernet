@@ -34,7 +34,7 @@ void setup() {
   //Ethernet.init(15);  // ESP8266 with Adafruit FeatherWing Ethernet
   //Ethernet.init(33);  // ESP32 with Adafruit FeatherWing Ethernet
 
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   Ethernet.begin(mac, ip, myDns, gateway, subnet);
 
