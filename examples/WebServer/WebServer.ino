@@ -16,11 +16,14 @@
 #include <Ethernet.h>
 
 #if defined(PIN_I0_12)
-uint8_t analogInputs[] = { I0_7, I0_8, I0_9, I0_10, I0_11, I0_12 };
+uint32_t analogInputs[] = { I0_7, I0_8, I0_9, I0_10, I0_11, I0_12 };
 const char* analogInputsNames[] = { "I0.7", "I0.8", "I0.9", "I0.10", "I0.11", "I0.12" };
-#else
-uint8_t analogInputs[] = { I0_2, I0_3, I0_4, I0_5 };
+#elif defined(PIN_I0_5)
+uint32_t analogInputs[] = { I0_2, I0_3, I0_4, I0_5 };
 const char* analogInputsNames[] = { "I0.2", "I0.3", "I0.4", "I0.5" };
+#else
+uint32_t analogInputs[] = { };
+const char* analogInputsNames[] = { };
 #endif  // defined(PIN_I0_12)
 
 // Enter a MAC address and IP address for your controller below.
