@@ -21,6 +21,10 @@
 #ifndef ethernet_h_
 #define ethernet_h_
 
+#if !defined(IS_HAVE_ETHERNET)
+#error "This PLC is not compatible with Ethernet."
+#endif
+
 #ifndef UNUSED
 #define UNUSED(x) (void)(x)
 #endif
